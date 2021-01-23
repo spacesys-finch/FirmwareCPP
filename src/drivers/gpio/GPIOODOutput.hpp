@@ -17,6 +17,11 @@ class GPIOODOutput {
 	void set_low();
 	void set_high_imp();
 	void set_state(GPIO_PinState state);
+
+private:
+	GPIO_TypeDef* port;
+	uint32_t pin;
+	uint32_t pull;
 };
 
 #endif /* DRIVERS_GPIO_GPIOODOUTPUT_HPP_ */

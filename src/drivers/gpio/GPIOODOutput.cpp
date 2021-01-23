@@ -9,14 +9,23 @@
 
 GPIOODOutput::GPIOODOutput(MCU* mcu, GPIO_TypeDef* port, uint32_t pin,
 		uint32_t pull, GPIO_PinState default_state) {
-	// TODO
+	port = port;
+	pin = pin;
+	pull = pull;
+
+	//Initialize pin to HAL Library
+	GPIO_InitTypeDef halGPIOHandler;
+	halGPIOHandler.Pin = pin;
+	halGPIOHandler.Pull = pull;
+	halGPIOHandler.Mode = GPIO_MODE_OUTPUT;
+	HAL_GPIO_Init(port, &halGPIOHandler);
 }
 
 GPIOODOutput::~GPIOODOutput() {
 }
 
 void GPIOODOutput::set_low() {
-	// TODO
+	HAL_GPIO_WritePin(port, pin, GPIO_PIN_RESET);
 }
 
 void GPIOODOutput::set_high_imp() {
@@ -24,5 +33,5 @@ void GPIOODOutput::set_high_imp() {
 }
 
 void GPIOODOutput::set_state(GPIO_PinState state) {
-	// TODO
+	HAL_GPIO_WritePin(port, pin, state);
 }

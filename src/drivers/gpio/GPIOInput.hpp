@@ -18,6 +18,12 @@ class GPIOInput {
 	GPIO_PinState get_state();
 	bool wait_until_low(uint32_t timeout_ms);
 	bool wait_until_high(uint32_t timeout_ms);
+
+private:
+	MCU* mcu;
+	GPIO_TypeDef* port;
+	unit32_t pin;
+	unit32_t pull;
 };
 
 #endif /* DRIVERS_GPIO_GPIOINPUT_HPP_ */
